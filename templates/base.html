@@ -3,16 +3,157 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="{% static 'css/style.css' %}">
-  {% block meta %}
-  {% endblock meta %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Title -->
+    <title>{% block title %}My Website{% endblock title %}</title>
+
+    <!-- Static CSS -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          crossorigin="anonymous">
+
+    {% block meta %}
+    {% endblock meta %}
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f5f7fb;
+            color: #333;
+        }
+
+        /* Navbar */
+        header {
+            background-color: #0d6efd;
+            padding: 15px 40px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .navbar-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: white;
+            font-size: 24px;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 25px;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: #dbe8ff;
+            text-decoration: none;
+        }
+
+        /* Main Content */
+        main {
+            min-height: 80vh;
+            padding: 50px 20px;
+        }
+
+        .content-container {
+            max-width: 1100px;
+            margin: auto;
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        /* Footer */
+        footer {
+            background-color: #222;
+            color: #aaa;
+            text-align: center;
+            padding: 18px;
+            font-size: 14px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .navbar-container {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            nav a {
+                margin-left: 12px;
+                margin-right: 12px;
+            }
+
+            .content-container {
+                padding: 20px;
+            }
+        }
+    </style>
 </head>
 
 <body>
-  {% block content %}
-  {% endblock content %}
-</body>
 
+<!-- Navbar -->
+<header>
+    <div class="navbar-container">
+
+        <a href="{% url 'sosmed:list' %}" class="logo">
+            MyApp
+        </a>
+
+        <nav>
+            <a href="{% url 'sosmed:list' %}">Home</a>
+            <a href="{% url 'sosmed:create' %}">Create</a>
+        </nav>
+
+    </div>
+</header>
+
+<!-- Main Content -->
+<main>
+    <div class="content-container">
+
+        {% block content %}
+        {% endblock content %}
+
+    </div>
+</main>
+
+<!-- Footer -->
+<footer>
+    <p>&copy; 2026 MyApp. All rights reserved.</p>
+</footer>
+
+<!-- Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        crossorigin="anonymous"></script>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+        crossorigin="anonymous"></script>
+
+</body>
 </html>
