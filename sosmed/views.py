@@ -29,24 +29,34 @@ def list(request):
 
     return render(request, 'sosmed/list.html', context)
 
-def update(request):
+
+def update(request, update_id):
     akun_update = Instagram.objects.get(id=update_id)
-    data={
-        'nama depan': akun_update.nama_depan,
-        'nama belakang': akun_update.nama_belakang,
+
+    data = {
+        'nama_depan': akun_update.nama_depan,
+        'nama_belakang': akun_update.nama_belakang,
         'username': akun_update.username,
     }
-    akun_form = InstagramForm(request.POST or None, initial=data, instance=akun_update)
+
+    akun_form = InstagramForm(
+        request.POST or None,
+        initial=data,
+        instance=akun_update
+    )
+
     if request.method == 'POST':
         if akun_form.is_valid():
             akun_form.save()
-        return redirect('sosmed:list')
+            return redirect('sosmed:list')
+
     context = {
         "page_title": "Sosial_Media",
         "akun_form": akun_form,
     }
 
     return render(request, 'sosmed/create.html', context)
+
 
 def delete(request, delete_id):
     Instagram.objects.get(id=delete_id).delete()
