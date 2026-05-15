@@ -1,63 +1,42 @@
 {% extends "base.html" %}
-
 {% block title %}
     {{ page_title }}
 {% endblock title %}
-
-{% block content %}
-
-<h1 class="mb-4">{{ page_title }}</h1>
-
-<table class="table table-bordered table-hover">
-
-    <thead class="thead-dark">
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">First Name</th>
-            <th scope="col">Last Name</th>
-            <th scope="col">Username</th>
-            <th scope="col">Delete</th>
-            <th scope="col">Update</th>
-        </tr>
-    </thead>
-
-    <tbody>
-
-        {% for akun in semua_akun %}
-
-        <tr>
-            <th scope="row">{{ forloop.counter }}</th>
-
-            <td>{{ akun.nama_depan }}</td>
-
-            <td>{{ akun.nama_belakang }}</td>
-
-            <td>{{ akun.username }}</td>
-
-            <td>
-                <a class="btn btn-danger btn-sm"
-                   href="{% url 'sosmed:delete' akun.id %}">
-                    Delete
-                </a>
-            </td>
-
-            <td>
-                <a class="btn btn-warning btn-sm"
-                   href="{% url 'sosmed:update' akun.id %}">
-                    Update
-                </a>
-            </td>
-        </tr>
-
-        {% endfor %}
-
-    </tbody>
-
-</table>
-
-<a class="btn btn-primary"
-   href="{% url 'sosmed:create' %}">
-    Tambah
-</a>
-
-{% endblock content %}
+{% block contents %}
+    <h1>{{ page_title }}</h1>
+    <table class="table table-bordered mt-3">
+        <thead class="thead-dark">
+            <tr>
+                <th>#</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Username</th>
+                <th>Delete</th>
+                <th>Update</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for akun in semua_akun %}
+            <tr>
+                <th scope="row">{{ forloop.counter }}</th>
+                <td>{{ akun.nama_depan }}</td>
+                <td>{{ akun.nama_belakang }}</td>
+                <td>{{ akun.username }}</td>
+                <td>
+                    <a class="btn btn-danger btn-sm"
+                       href="{% url 'sosmed:delete' akun.id %}">
+                        Delete
+                    </a>
+                </td>
+                <td>
+                    <a class="btn btn-warning btn-sm"
+                       href="{% url 'sosmed:update' akun.id %}">
+                        Update
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{% url 'sosmed:create' %}" class="btn btn-primary">Add Account</a>
+{% endblock contents %}
