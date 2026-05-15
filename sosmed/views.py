@@ -12,7 +12,7 @@ def create(request):
             return redirect('sosmed:list')
 
     context = {
-        "page_title": "Tambah akun",
+        "page_title": "Add Account",
         "akun_form": akun_form,
     }
 
@@ -23,7 +23,7 @@ def list(request):
     semua_akun = Instagram.objects.all()
 
     context = {
-        "page_title": "Sosial_Media",
+        "page_title": "Social Media",
         "semua_akun": semua_akun,
     }
 
@@ -51,7 +51,7 @@ def update(request, update_id):
             return redirect('sosmed:list')
 
     context = {
-        "page_title": "Sosial_Media",
+        "page_title": "Update Account",
         "akun_form": akun_form,
     }
 

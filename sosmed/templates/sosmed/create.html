@@ -1,14 +1,14 @@
 {% extends "base.html" %}
 {% block title %}
-    {{page_title}}
+    {{ page_title }}
 {% endblock title %}
 {% block contents %}
-    <h1>{{page_title}}</h1>
+    <h1>{{ page_title }}</h1>
     <form method="POST">
         {% csrf_token %}
         <table>
-            {{akun_form.as_table}}
+            {{ akun_form.as_table }}
         </table>
-        <button type="Submit">Kirim</button>
+        <button type="Submit" class="btn btn-primary mt-3">Submit</button>
     </form>
 {% endblock contents %}
