@@ -45,6 +45,9 @@ ALLOWED_HOSTS = ["*"]
 if not PRODUCTION:
     ALLOWED_HOSTS += ['.localhost', '127.0.0.1', '[::1]']
 
+CSRF_TRUSTED_ORIGINS = [
+    'https://web-production-79eb2.up.railway.app',
+]
 
 # Application definition
 
@@ -110,7 +113,7 @@ if PRODUCTION:
 
 
 # Password validation
-# https://docs.djangoproject.com/en/6.0/ref/settings/#auth-password-validators
+# https://docs.djangoproject.com/en/6.0/r   ef/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
     {
