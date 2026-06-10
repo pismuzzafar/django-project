@@ -1,14 +1,42 @@
 {% extends "base.html" %}
-{% block title %}
-    {{ page_title }}
-{% endblock title %}
+{% load static %}
+
+{% block title %}{{ page_title }} — TeamSync{% endblock title %}
+
 {% block contents %}
     <h1>{{ page_title }}</h1>
-    <form method="POST">
+    <p class="subtitle">Fill in the details below</p>
+
+    <div class="success-banner" id="successBanner">
+        ✅ Form looks good! Submitting...
+    </div>
+
+    <form method="POST" id="memberForm" novalidate>
         {% csrf_token %}
-        <table>
-            {{ akun_form.as_table }}
-        </table>
-        <button type="Submit" class="btn btn-primary mt-3">Submit</button>
+
+        <div class="form-group">
+            <label for="firstName">First Name</label>
+            {{ akun_form.nama_depan }}
+            <span class="error-msg" id="errorFirstName">First name is required.</span>
+        </div>
+
+        <div class="form-group">
+            <label for="lastName">Last Name</label>
+            {{ akun_form.nama_belakang }}
+            <span class="error-msg" id="errorLastName">Last name is required.</span>
+        </div>
+
+        <div class="form-group">
+            <label for="username">Username</label>
+            {{ akun_form.username }}
+            <span class="error-msg" id="errorUsername">Username must be at least 3 characters, letters/numbers/underscores only.</span>
+        </div>
+
+        <div class="form-actions">
+            <button type="submit" class="btn btn-orange">Save Member</button>
+            <a href="{% url 'sosmed:list' %}" class="btn btn-primary">Cancel</a>
+        </div>
     </form>
+
+    <script src="{% static 'js/form.js' %}"></script>
 {% endblock contents %}
